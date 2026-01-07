@@ -1,19 +1,14 @@
 const Skills = () => {
   return (
-    <section
-      className="min-h-screen flex justify-center items-center px-4 sm:px-8 md:px-16  text-gray-800"
-      id="skills"
-    >
+    <section className="section" id="skills">
       <div className="max-w-3xl w-full">
-        <h2 className="text-4xl font-bold text-pink-600 mb-6">Skills</h2>
+        <h2>Skills</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-700 text-base">
           {/* Core Frontend */}
           <div>
-            <h3 className="text-xl font-semibold mb-2">
-              🖥️ Frontend Development
-            </h3>
-            <ul className="list-disc list-inside space-y-1 pl-4">
+            <h3>🖥️ Frontend Development</h3>
+            <ul className="skills-set">
               <li>HTML5, CSS3</li>
               <li>JavaScript (ES6+)</li>
               <li>TypeScript</li>
@@ -26,8 +21,8 @@ const Skills = () => {
 
           {/* Animations & UI */}
           <div>
-            <h3 className="text-xl font-semibold mb-2">🎨 Animations & UI</h3>
-            <ul className="list-disc list-inside space-y-1 pl-4">
+            <h3>🎨 Animations & UI</h3>
+            <ul className="skills-set">
               <li>GSAP</li>
               <li>Framer Motion</li>
               <li>Responsive Design</li>
@@ -37,10 +32,8 @@ const Skills = () => {
 
           {/* Backend */}
           <div>
-            <h3 className="text-xl font-semibold mb-2">
-              🧩 Backend Development
-            </h3>
-            <ul className="list-disc list-inside space-y-1 pl-4">
+            <h3>🧩 Backend Development</h3>
+            <ul className="skills-set">
               <li>Node.js</li>
               <li>Express.js</li>
               <li>REST APIs</li>
@@ -51,10 +44,8 @@ const Skills = () => {
 
           {/* Programming & Tools */}
           <div>
-            <h3 className="text-xl font-semibold mb-2">
-              🛠️ Programming & Tools
-            </h3>
-            <ul className="list-disc list-inside space-y-1 pl-4">
+            <h3>🛠️ Programming & Tools</h3>
+            <ul className="skills-set">
               <li>Python</li>
               <li>Git & GitHub</li>
               <li>Postman</li>

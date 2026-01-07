@@ -1,11 +1,8 @@
 const Projects = () => {
   return (
-    <section
-      className="min-h-screen flex justify-center items-center px-4 sm:px-8 md:px-16  text-gray-800"
-      id="projects"
-    >
+    <section className="section" id="projects">
       <div className="max-w-3xl w-full">
-        <h2 className="text-4xl font-bold text-pink-600 mb-6">Projects</h2>
+        <h2>Projects</h2>
         <ul className="space-y-12">
           {/* E-Commerce Project */}
           <li>

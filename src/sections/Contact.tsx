@@ -1,11 +1,8 @@
 const Contact = () => {
   return (
-    <section
-      className="flex justify-center items-center min-h-screen px-4"
-      id="contact"
-    >
+    <section className="section" id="contact">
       <div className="w-full max-w-xl">
-        <h2 className="text-4xl font-bold text-pink-600 mb-6">Contact</h2>
+        <h2>Contact</h2>
 
         <p className="text-gray-700 mb-8 text-center md:text-left">
           Interested in working together or have a question? Feel free to reach
