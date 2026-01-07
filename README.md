@@ -4,14 +4,14 @@ A modern, responsive, and fully functional **developer portfolio** built with th
 
 ## 📸 Live Preview
 
-[🔗 View Live Portfolio](https://curious-cascaron-8c303a.netlify.app/)
+[🔗 View Live Portfolio](https://jvkedev-portfolio.vercel.app/)
 
 ## 🧰 Tech Stack
 
-- **Frontend**: React + TypeScript + TailwindCSS
-- **Backend**: Node.js + Express.js
-- **Database**: MongoDB
-- **Additional**: Vite, React Router, etc.
+- React
+- Tailwind CSS
+- Typescript
+- Vite
 
 ## 🛠️ Features
 
@@ -27,7 +27,7 @@ A modern, responsive, and fully functional **developer portfolio** built with th
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/JVKE001/portfolio.git
+git clone https://github.com/jvkedev/portfolio.git
 
 ```
 ### 2. Navigate to the project directory
@@ -53,5 +53,5 @@ npm run dev
 
 ## Author
 
-JVKE
+JvkeDev
 
