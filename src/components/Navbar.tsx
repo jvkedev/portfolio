@@ -1,36 +1,38 @@
 import { useState } from "react";
-import HamburgerIcon from "../assets/hamburger-icon.png";
+import HamburgerIcon from "/hamburger-icon.png";
 
 const Navbar = () => {
+  // Toggle logic
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
-    <nav className="border border-blue-200 h-30 flex items-center px-7 justify-between backdrop-blur-sm z-10 fixed top-0 w-full bg-white/70 shadow-md">
-      <h1 className="text-2xl md:text-3xl font-bold opacity-75">
-        Shubham (JVKE)
-      </h1>
+    <nav className="navbar">
+      <h1 className="logo">JvkeDev</h1>
 
-      {/* Hamburger Icon */}
+      {/* Menu Icon */}
       <button className="md:hidden" onClick={toggleMenu}>
-        <img src={HamburgerIcon} alt="menu" width="30px" />
+        <img src={HamburgerIcon} alt="menu" width="30" />
       </button>
 
       {/* Navigation Links */}
       <ul
-        className={`flex flex-col md:flex-row absolute md:static top-30 right-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none transition-all duration-300 ease-in-out ${
-          isOpen
-            ? "opacity-100 visible"
-            : "opacity-0 invisible md:visible md:opacity-100"
-        }`}
+        className={`
+    mobile-menu
+    ${
+      isOpen
+        ? "max-h-screen opacity-100 translate-y-0"
+        : "max-h-0 opacity-0 -translate-y-4 md:max-h-none md:opacity-100 md:translate-y-0"
+    }
+  `}
       >
         {["hero", "about", "projects", "skills", "contact"].map((section) => (
           <li key={section}>
             <a
               href={`#${section}`}
-              className="block px-6 py-3 text-pink-500 hover:text-pink-600 font-semibold text-center"
-              onClick={() => setIsOpen(false)} // close menu on click
+              className="block px-6 py-3 text-pink-500 hover:text-pink-600 font-bold text-center"
+              onClick={() => setIsOpen(false)}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>

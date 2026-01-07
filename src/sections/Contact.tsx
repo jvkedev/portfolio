@@ -30,24 +30,24 @@ const Contact = () => {
           <li>
             <span className="font-semibold">🐱 GitHub:</span>{" "}
             <a
-              href="https://github.com/JVKE001"
+              href="https://github.com/jvkedev"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline"
             >
-              github.com/jvke001
+              github.com/jvkedev
             </a>
           </li>
 
           <li>
             <span className="font-semibold">💼 LinkedIn:</span>{" "}
             <a
-              href="https://www.linkedin.com/in/jvke001"
+              href="https://www.linkedin.com/in/jvkedev"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline"
             >
-              linkedin.com/in/jvke001
+              linkedin.com/in/jvkedev
             </a>
           </li>
         </ul>

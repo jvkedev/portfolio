@@ -13,8 +13,9 @@ const About = () => {
             developer who loves turning ideas into powerful web experiences. I
             specialize in building modern, responsive apps using the{" "}
             <strong>MERN stack</strong>, and I'm currently diving into{" "}
-            <strong>TypeScript</strong>, <strong>Tailwind CSS</strong>, and{" "}
-            <strong>Next.js</strong>.
+            <strong>TypeScript</strong>, <strong>Next.js</strong> and
+            {""}
+            <strong> GSAP</strong>.
           </p>
 
           <p>
@@ -25,10 +26,10 @@ const About = () => {
           </p>
 
           <p>
-            Outside of coding, I’m learning{" "}
-            <strong>Python</strong>, and preparing for my{" "}
-            <strong>BCA degree at IGNOU</strong>. Whether it's setting up APIs
-            or debugging UI at midnight. I’m always excited to build.
+            Outside of coding, I’m learning <strong>Python</strong>, and
+            preparing for my <strong>BCA degree at IGNOU</strong>. Whether it's
+            setting up APIs or debugging UI at midnight. I’m always excited to
+            build.
           </p>
 
           <p>
@@ -39,8 +40,8 @@ const About = () => {
 
           <p>
             Music keeps me grounded, and <strong>Billie Eilish</strong> fuels my
-            vibe. Her raw emotion and minimalism inspire not just playlists,
-            but also how I write and design clean code.
+            vibe. Her raw emotion and minimalism inspire not just playlists, but
+            also how I write and design clean code.
           </p>
 
           <p>Let’s build something beautiful together.</p>
