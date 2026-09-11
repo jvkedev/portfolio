@@ -1,4 +1,3 @@
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import React, { useRef, useState } from "react";
 
@@ -40,7 +39,7 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Validate form fields
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
@@ -54,62 +53,89 @@ const Contact = () => {
     }
     setLoading(true);
 
-    // Check if EmailJS environment variables are configured
-    const serviceId = import.meta.env.VITE_APP_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
+    try {
+      // 1. Try backend API route (/api/contact)
+      let response = null;
+      try {
+        response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+      } catch (err) {
+        response = null;
+      }
 
-    if (!serviceId || !templateId || !publicKey) {
+      // 2. Fallback to direct FormSubmit endpoint if API route is unavailable
+      if (!response || !response.ok) {
+        response = await fetch(
+          "https://formsubmit.co/ajax/shubhameilish@gmail.com",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              name: form.name,
+              email: form.email,
+              message: form.message,
+              _subject: `New Portfolio Message from ${form.name}`,
+              _replyto: form.email,
+              _captcha: "false",
+              _template: "table",
+            }),
+          }
+        );
+      }
+
+      const result = await response.json();
+
+      if (
+        result.message &&
+        result.message.toLowerCase().includes("activation")
+      ) {
+        setLoading(false);
+        play("notification");
+        setToast({
+          open: true,
+          message:
+            "Activation required: FormSubmit sent an 'Activate Form' confirmation email. Please check your inbox or spam folder and click activate.",
+          type: "error",
+        });
+        return;
+      }
+
+      if (result.success === "true" || result.success === true || (response.ok && result.success !== "false" && result.success !== false)) {
+        setLoading(false);
+        play("success");
+        setToast({
+          open: true,
+          message:
+            "Thank you! Your message has been sent. I will get back to you as soon as possible.",
+          type: "success",
+        });
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        throw new Error(result.message || "Failed to send message.");
+      }
+    } catch (error) {
       setLoading(false);
+      console.error("Submission error:", error);
       play("error");
       setToast({
         open: true,
-        message:
-          "EmailJS configuration is missing. Please check your environment variables.",
+        message: error.message || "Ahh, something went wrong. Please try again.",
         type: "error",
       });
-      return;
     }
-
-    emailjs
-      .send(
-        serviceId,
-        templateId,
-        {
-          user_name: form.name,
-          my_name: "Jayant Potdar",
-          user_email: form.email,
-          my_email: "jayantpotdar2006@gmail.com",
-          user_message: form.message,
-        },
-        publicKey
-      )
-      .then(
-        () => {
-          setLoading(false);
-          play("success");
-          setToast({
-            open: true,
-            message: "Thank you. I will get back to you as soon as possible.",
-            type: "success",
-          });
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-          play("error");
-          setToast({
-            open: true,
-            message: "Ahh, something went wrong. Please try again.",
-            type: "error",
-          });
-        }
-      );
   };
 
   return (

@@ -27,3 +27,8 @@ dist-ssr
 
 # vscode
 .vscode
+
+# Resume
+public/Shubham_Resume.pdf
+public/shubham_resume.pdf
+*.pdf

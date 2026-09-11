@@ -44,10 +44,20 @@ const useParallax = ({
     // Smooth lerp animation
     let rafId;
     const animate = () => {
-      setOffset((current) => ({
-        x: current.x + (targetOffset.x - current.x) * smoothing,
-        y: current.y + (targetOffset.y - current.y) * smoothing,
-      }));
+      setOffset((current) => {
+        const dx = targetOffset.x - current.x;
+        const dy = targetOffset.y - current.y;
+        if (Math.abs(dx) < 0.01 && Math.abs(dy) < 0.01) {
+          if (current.x === targetOffset.x && current.y === targetOffset.y) {
+            return current;
+          }
+          return { x: targetOffset.x, y: targetOffset.y };
+        }
+        return {
+          x: current.x + dx * smoothing,
+          y: current.y + dy * smoothing,
+        };
+      });
       rafId = requestAnimationFrame(animate);
     };
 

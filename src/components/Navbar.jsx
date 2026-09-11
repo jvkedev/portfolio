@@ -7,7 +7,6 @@ import {
   project,
   portfolio,
   skills,
-  testimonials,
   contact,
   logo,
 } from "../assets";
@@ -34,11 +33,6 @@ const NAV_LINKS = [
     title: "skills",
     href: "#skills",
     img: skills,
-  },
-  {
-    title: "testimonials",
-    href: "#testimonials",
-    img: testimonials,
   },
   {
     title: "contact",

@@ -306,73 +306,21 @@ const ProjectModal = ({
             {/* Content */}
             <div className="p-6 md:p-8">
               {/* Title */}
-              <motion.h2
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl font-bold text-white mb-4"
-              >
-                {project.name}
-              </motion.h2>
-
-              {/* Metrics Row - Always Show */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 }}
-                className="flex flex-wrap gap-6 mb-6 pb-4 border-b border-white/10"
+                transition={{ delay: 0.1 }}
+                className="flex flex-wrap items-center gap-3 mb-4"
               >
-                {/* Stars - Apple SF Symbol Style */}
-                <div className="flex items-center gap-3">
-                  <svg
-                    className="w-6 h-6 text-amber-400"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                  <span className="text-white font-semibold text-sm tracking-tight">
-                    {project.metrics?.stars ?? 0}
+                <h2 className="text-3xl md:text-4xl font-bold text-white">
+                  {project.name}
+                </h2>
+                {project.isFeatured && (
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/40 flex items-center gap-1.5 shadow-md">
+                    <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    Strongest Backend Project
                   </span>
-                </div>
-                {/* Forks - Apple SF Symbol Style (Code Branch) */}
-                <div className="flex items-center gap-3">
-                  <svg
-                    className="w-6 h-6 text-emerald-400"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    viewBox="0 0 24 24"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="6" y1="3" x2="6" y2="15" />
-                    <circle cx="18" cy="6" r="3" />
-                    <circle cx="6" cy="18" r="3" />
-                    <path d="M18 9a9 9 0 01-9 9" />
-                  </svg>
-                  <span className="text-white font-semibold text-sm tracking-tight">
-                    {project.metrics?.forks ?? 0}
-                  </span>
-                </div>
-                {/* Views - Apple SF Symbol Style (Eye) */}
-                <div className="flex items-center gap-3">
-                  <svg
-                    className="w-6 h-6 text-violet-400"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    viewBox="0 0 24 24"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                  <span className="text-white font-semibold text-sm tracking-tight">
-                    {project.metrics?.views ?? 0}
-                  </span>
-                </div>
+                )}
               </motion.div>
 
               {/* Description */}
@@ -477,47 +425,51 @@ const ProjectModal = ({
               </motion.div>
 
               {/* Action Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                {/* Live Demo Button */}
-                {project.live_demo_link && (
-                  <button
-                    onClick={() =>
-                      window.open(project.live_demo_link, "_blank")
-                    }
-                    className="flex-1 flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.2"
-                      viewBox="0 0 24 24"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" />
-                      <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
-                      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-                    </svg>
-                    Live Demo
-                  </button>
-                )}
-                {/* Source Code Button */}
-                <button
-                  onClick={() =>
-                    window.open(project.source_code_link, "_blank")
-                  }
-                  className="flex-1 flex items-center justify-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              {(project.live_demo_link || project.source_code_link) && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-4"
                 >
-                  <img src={github} alt="github" className="w-6 h-6" />
-                  Source Code
-                </button>
-              </motion.div>
+                  {/* Live Demo / View Project Button */}
+                  {project.live_demo_link && (
+                    <button
+                      onClick={() =>
+                        window.open(project.live_demo_link, "_blank")
+                      }
+                      className="flex-1 flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        viewBox="0 0 24 24"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" />
+                        <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
+                        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+                      </svg>
+                      View Project
+                    </button>
+                  )}
+                  {/* Source Code Button */}
+                  {project.source_code_link && (
+                    <button
+                      onClick={() =>
+                        window.open(project.source_code_link, "_blank")
+                      }
+                      className="flex-1 flex items-center justify-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <img src={github} alt="github" className="w-6 h-6" />
+                      Source Code
+                    </button>
+                  )}
+                </motion.div>
+              )}
 
               {/* Keyboard Shortcuts Info */}
               <motion.div

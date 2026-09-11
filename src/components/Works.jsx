@@ -12,19 +12,30 @@ import { fadeIn, textVariant } from "../utils/motion";
 import useMediaQuery from "../utils/useMediaQuery";
 import ProjectModal from "./ProjectModal";
 
-const ProjectCard = ({ index, name, image, source_code_link, onOpenModal }) => {
+const ProjectCard = ({
+  index,
+  name,
+  description,
+  tags,
+  image,
+  source_code_link,
+  live_demo_link,
+  isFeatured,
+  category,
+  onOpenModal,
+}) => {
   const { hoverDepth, previewReady, handlers } = useCardIntent({
     id: `project-${index}`,
     hoverDelay: 200,
   });
 
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const { style: parallaxStyle } = useParallax({ enabled: !isMobile });
+  const { style: parallaxStyle } = useParallax({ enabled: !isMobile && previewReady });
 
   return (
     <motion.div
-      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
-      className="w-full lg:w-[calc(50%-20px)]"
+      variants={fadeIn("up", "spring", index * 0.3, 0.75)}
+      className="w-full lg:w-[calc(50%-20px)] flex"
     >
       <motion.div
         {...handlers}
@@ -38,103 +49,163 @@ const ProjectCard = ({ index, name, image, source_code_link, onOpenModal }) => {
           stiffness: 230,
           damping: 24,
         }}
-        className="relative h-[320px] rounded-xl overflow-hidden cursor-pointer group bg-[#0a0e17] border border-white/[0.06] hover:border-white/[0.14] transition-all duration-400 shadow-[0_6px_24px_rgb(0,0,0,0.25)] hover:shadow-[0_12px_30px_rgb(0,0,0,0.4)]"
+        className={`relative w-full flex flex-col rounded-2xl overflow-hidden cursor-pointer group bg-[#0a0e17] transition-all duration-400 shadow-[0_6px_24px_rgb(0,0,0,0.25)] hover:shadow-[0_16px_36px_rgb(0,0,0,0.45)] ${
+          isFeatured
+            ? "border border-blue-500/40 hover:border-blue-500/70 shadow-[0_6px_24px_rgba(37,99,235,0.15)] hover:shadow-[0_16px_40px_rgba(37,99,235,0.3)] ring-1 ring-blue-500/25"
+            : "border border-white/[0.08] hover:border-white/[0.18]"
+        }`}
         onClick={() => onOpenModal(previewReady)}
       >
         {/* Subtle Top Accent Line */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-white/8 group-hover:bg-blue-500/40 transition-all duration-500"></div>
+        <div
+          className={`absolute top-0 left-0 right-0 h-[2px] transition-all duration-500 ${
+            isFeatured
+              ? "bg-gradient-to-r from-blue-500 via-indigo-400 to-blue-500"
+              : "bg-white/10 group-hover:bg-blue-500/50"
+          }`}
+        ></div>
 
-        {/* Project Number Badge - Premium Minimal */}
-        <div className="absolute top-5 left-5 z-20 transition-all duration-400 group-hover:scale-110">
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-white/[0.05] backdrop-blur-lg border border-white/[0.12] group-hover:border-blue-500/50 group-hover:bg-white/[0.08] transition-all duration-400">
-            <span className="text-white/80 font-semibold text-sm tracking-wider">
+        {/* Project Number Badge */}
+        <div className="absolute top-4 left-4 z-20 transition-all duration-400 group-hover:scale-105">
+          <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-black/60 backdrop-blur-md border border-white/[0.14] shadow-md">
+            <span className="text-white/90 font-semibold text-xs tracking-wider font-mono">
               {String(index + 1).padStart(2, "0")}
             </span>
           </div>
         </div>
 
-        {/* GitHub Button - Premium Design */}
-        <div className="absolute top-5 right-5 z-20">
-          <motion.button
-            whileHover={{ scale: 1.12 }}
-            whileTap={{ scale: 0.92 }}
-            transition={{ type: "spring", stiffness: 450, damping: 22 }}
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(source_code_link, "_blank");
-            }}
-            className="relative w-10 h-10 rounded-lg bg-white/[0.05] backdrop-blur-lg border border-white/[0.12] hover:border-blue-500/40 hover:bg-white/[0.08] flex items-center justify-center transition-all duration-400"
-            aria-label="View source code"
-          >
-            <img
-              src={github}
-              alt="github"
-              className="w-5 h-5 opacity-75 group-hover:opacity-100 transition-opacity duration-300"
-            />
-          </motion.button>
+        {/* Top-Right Badges / Quick Action Buttons */}
+        <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+          {isFeatured && (
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-blue-500/20 text-blue-300 border border-blue-500/40 backdrop-blur-md flex items-center gap-1.5 shadow-lg">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+              Backend Focus
+            </span>
+          )}
+          {source_code_link && (
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(source_code_link, "_blank");
+              }}
+              className="w-9 h-9 rounded-lg bg-black/60 backdrop-blur-md border border-white/[0.14] hover:border-blue-500/50 hover:bg-white/[0.1] flex items-center justify-center transition-all duration-300 shadow-md"
+              aria-label="View source code on GitHub"
+              title="View on GitHub"
+            >
+              <img src={github} alt="github" className="w-4 h-4 opacity-80 group-hover:opacity-100" />
+            </motion.button>
+          )}
         </div>
 
-        {/* Main Image Section - Full Height */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        {/* Main Image Section */}
+        <div className="relative h-[220px] sm:h-[240px] w-full overflow-hidden bg-[#0d1120]">
           <motion.img
             src={image}
             alt={name}
-            className="w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.02]"
+            className="w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.03]"
             style={{
-              filter: "brightness(0.88) saturate(1.05) contrast(1.02)",
+              filter: "brightness(0.9) saturate(1.05) contrast(1.02)",
               ...parallaxStyle,
             }}
           />
-
-          {/* Elegant Overlay */}
-          <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-all duration-500"></div>
-
-          {/* Right-side gradient for content readability */}
-          <div className="absolute inset-y-0 right-0 w-2/5 bg-gradient-to-l from-black/60 via-black/20 to-transparent"></div>
+          {/* Subtle gradient overlay to smoothly transition into card body */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e17] via-black/20 to-black/30 pointer-events-none"></div>
         </div>
 
-        {/* Content Section - Premium Compact */}
-        <div className="absolute inset-0 flex flex-col justify-end p-5">
-          {/* View Indicator - Subtle */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mb-2 opacity-0 group-hover:opacity-100 transition-all duration-400"
-          >
-            <div className="inline-flex items-center gap-1.5 text-xs text-blue-400/85 font-medium tracking-wide">
-              <svg
-                className="w-3.5 h-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
-              <span>View Project</span>
+        {/* Content Section */}
+        <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between gap-4 bg-[#0a0e17]">
+          <div className="flex flex-col gap-2">
+            {/* Title */}
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="text-white font-bold text-lg sm:text-xl leading-snug tracking-tight group-hover:text-blue-400 transition-colors duration-300">
+                {name}
+              </h3>
             </div>
-          </motion.div>
 
-          {/* Project Title - Larger for prominence */}
-          <h3 className="text-white font-bold text-lg leading-snug mb-2 tracking-tight group-hover:text-blue-50 transition-colors duration-400 line-clamp-2">
-            {name}
-          </h3>
+            {/* Description */}
+            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed line-clamp-3">
+              {description}
+            </p>
+          </div>
 
-          {/* Premium Underline Accent */}
-          <div className="h-[1.5px] w-0 group-hover:w-12 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full transition-all duration-600 ease-out"></div>
+          {/* Technology Tags */}
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            {tags.map((tag) => (
+              <span
+                key={`${name}-${tag.name}`}
+                className={`text-[11px] sm:text-xs font-medium px-2.5 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] ${tag.color}`}
+              >
+                #{tag.name}
+              </span>
+            ))}
+          </div>
+
+          {/* Bottom Action Row */}
+          <div className="pt-3 border-t border-white/[0.07] flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              {live_demo_link && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(live_demo_link, "_blank");
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-600/90 hover:bg-blue-600 rounded-lg shadow-sm hover:shadow-blue-500/20 transition-all duration-200"
+                >
+                  <span>View Project</span>
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </button>
+              )}
+              {source_code_link && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(source_code_link, "_blank");
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white/90 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 rounded-lg transition-all duration-200"
+                >
+                  <img src={github} alt="GitHub" className="w-3.5 h-3.5 opacity-80" />
+                  <span>GitHub</span>
+                </button>
+              )}
+            </div>
+
+            {/* View Details modal trigger indicator */}
+            <div className="inline-flex items-center gap-1 text-xs text-blue-400/80 font-medium group-hover:text-blue-300 transition-colors">
+              <span>Details</span>
+              <svg
+                className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom Edge Accent */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-white/5 group-hover:bg-blue-500/25 transition-all duration-500"></div>
-
-        {/* Premium Hover Glow - Subtle */}
+        {/* Premium Hover Glow */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-          <div className="absolute top-0 right-0 w-72 h-72 bg-blue-500/8 rounded-full blur-3xl"></div>
+          <div
+            className={`absolute top-0 right-0 w-72 h-72 rounded-full blur-3xl ${
+              isFeatured ? "bg-blue-500/15" : "bg-blue-500/8"
+            }`}
+          ></div>
         </div>
       </motion.div>
     </motion.div>

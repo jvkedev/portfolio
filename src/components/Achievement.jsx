@@ -23,11 +23,11 @@ const AchievementCard = ({ Achievement }) => {
       date={Achievement.date}
       iconStyle={{ background: Achievement.iconBg }}
       icon={
-        <div className="flex justify-center items-center w-full h-full">
+        <div className="flex justify-center items-center w-full h-full p-1.5">
           <img
             src={Achievement.icon}
             alt={Achievement.company_name}
-            className="object-contain rounded-full"
+            className="w-full h-full object-contain rounded-full"
           />
         </div>
       }
@@ -38,36 +38,52 @@ const AchievementCard = ({ Achievement }) => {
             ? Achievement.title.map((t, i) => <div key={i}>{t}</div>)
             : Achievement.title}
         </h3>
-        {/* <p
-          className="text-white text-[16px] font-semibold"
-          style={{ margin: 0 }}
-        >
-          {Achievement.company_name}
-        </p> */}
+        {Achievement.company_name && (
+          <p
+            className="text-secondary text-[16px] font-semibold mt-1"
+            style={{ margin: 0 }}
+          >
+            {Achievement.company_name}
+          </p>
+        )}
       </div>
 
       <ul className="mt-5 list-disc ml-5 space-y-2">
         {Achievement.points.map((point, index) => (
           <li
             key={`Achievement-point-${index}`}
-            className="text-white-100 text-[14px] pl-1 tracking-wider"
+            className="text-white-100 text-[14px] pl-1 tracking-wider leading-relaxed"
           >
             {point}
-            {Achievement.credential && Achievement.credential[index] && (
-              <div className="my-2">
-                <a
-                  href={Achievement.credential[index]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 underline hover:text-blue-300 transition-colors duration-200"
-                >
-                  View Credential
-                </a>
-              </div>
-            )}
           </li>
         ))}
       </ul>
+
+      {Achievement.certificate && (
+        <div className="mt-5 pt-1">
+          <a
+            href={Achievement.certificate}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-600 hover:to-indigo-600 text-white rounded-lg text-[14px] font-medium shadow-md transition-all duration-200"
+          >
+            <span>View Certificate</span>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
+        </div>
+      )}
     </VerticalTimelineElement>
   );
 };
@@ -77,7 +93,7 @@ const Achievement = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} text-center`}>
-          What I have Achieved so far
+          Experience & Certifications
         </p>
         <h2 className={`${styles.sectionHeadText} text-center`}>
           Achievements.
@@ -94,7 +110,7 @@ const Achievement = () => {
           ))}
         </VerticalTimeline>
       </div>
-      
+
       <span id="skills"></span>
     </>
   );

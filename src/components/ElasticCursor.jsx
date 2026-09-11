@@ -7,7 +7,6 @@ import React, {
   useState,
 } from "react";
 import { useCursorState } from "../reactbits/context/ReactBitsCursorProvider";
-import { useMouse } from "../utils/useMouse";
 
 // Gsap Ticker Function
 function useTicker(callback, paused) {
@@ -53,24 +52,29 @@ function getRekt(el) {
 const CURSOR_DIAMETER = 50;
 
 function ElasticCursor() {
-  // Detect if mobile (simple check)
   const isMobile =
-    window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 768px)").matches;
   const jellyRef = useRef(null);
+  const dotRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
-  const { x, y } = useMouse();
   const { intent, setTargetBounds, setHoverTarget } = useCursorState();
   const pos = useInstance(() => ({ x: 0, y: 0 }));
   const vel = useInstance(() => ({ x: 0, y: 0 }));
   const set = useInstance();
 
   useLayoutEffect(() => {
+    if (!jellyRef.current || !dotRef.current) return;
     set.x = gsap.quickSetter(jellyRef.current, "x", "px");
     set.y = gsap.quickSetter(jellyRef.current, "y", "px");
     set.r = gsap.quickSetter(jellyRef.current, "rotate", "deg");
     set.sx = gsap.quickSetter(jellyRef.current, "scaleX");
     set.sy = gsap.quickSetter(jellyRef.current, "scaleY");
     set.width = gsap.quickSetter(jellyRef.current, "width", "px");
+
+    set.dotX = gsap.quickSetter(dotRef.current, "x", "px");
+    set.dotY = gsap.quickSetter(dotRef.current, "y", "px");
   }, []);
 
   const loop = useCallback(() => {
@@ -97,6 +101,14 @@ function ElasticCursor() {
       if (!cursorMoved) {
         setCursorMoved(true);
       }
+      const x = e.clientX;
+      const y = e.clientY;
+
+      if (set.dotX && set.dotY) {
+        set.dotX(x);
+        set.dotY(y);
+      }
+
       const el = e.target;
       const hoverElemRect = getRekt(el);
       if (hoverElemRect) {
@@ -127,8 +139,7 @@ function ElasticCursor() {
         setTargetBounds(null);
         setHoverTarget(null);
       }
-      const x = e.clientX;
-      const y = e.clientY;
+
       gsap.to(pos, {
         x: x,
         y: y,
@@ -141,11 +152,11 @@ function ElasticCursor() {
       });
       loop();
     };
-    window.addEventListener("mousemove", setFromEvent);
+    window.addEventListener("mousemove", setFromEvent, { passive: true });
     return () => {
       window.removeEventListener("mousemove", setFromEvent);
     };
-  }, [isMobile]);
+  }, [isMobile, cursorMoved]);
 
   useTicker(loop, !cursorMoved || isMobile);
   if (isMobile) return null;
@@ -159,21 +170,19 @@ function ElasticCursor() {
           width: CURSOR_DIAMETER,
           height: CURSOR_DIAMETER,
           borderRadius: 50,
-          border: "2px solid #000",
-          background: "rgba(255,255,255,0.2)",
-          mixBlendMode: "exclusion",
+          border: "2px solid rgba(255, 255, 255, 0.7)",
+          background: "rgba(255, 255, 255, 0.15)",
+          mixBlendMode: "difference",
           pointerEvents: "none",
-          backdropFilter: "invert(100%)",
         }}
       />
-      {/* Small dot at mouse position with invert effect */}
+      {/* Small dot at mouse position with difference blend effect */}
       <div
-        className="w-3 h-3 rounded-full fixed translate-x-[-50%] translate-y-[-50%] pointer-events-none transition-none duration-300"
+        ref={dotRef}
+        className="w-2.5 h-2.5 rounded-full fixed left-0 top-0 translate-x-[-50%] translate-y-[-50%] pointer-events-none bg-white z-[1000]"
         style={{
-          top: y,
-          left: x,
-          backdropFilter: "invert(100%)",
-          zIndex: 1000,
+          mixBlendMode: "difference",
+          pointerEvents: "none",
         }}
       />
     </>

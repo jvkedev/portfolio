@@ -1,38 +1,14 @@
 import {
-  neuralnet,
-  neuralnet1,
-  neuralnet2,
-  neuralnet3,
-  neuralnet4,
-  astroPixel,
-  krypton,
-  krypton1,
-  krypton2,
-  krypton3,
-  krypton4,
-  krypton5,
-  krypton6,
+  stocklock,
+  vyomme,
+  lifecare,
+  portfolio3d,
+  vsit,
+  jagatmitra,
   code,
   concepts,
-  coursera,
-  cp,
   designs,
-  fcc,
-  hr,
   ideas,
-  malariadetectionsystem,
-  novalearn,
-  portfolio,
-  astroPixel1,
-  astroPixel2,
-  astroPixel3,
-  malariadetectionsystem1,
-  malariadetectionsystem2,
-  contact,
-  skills,
-  about,
-  novalearn1,
-  novalearn2,
 } from "../assets";
 
 export const navLinks = [
@@ -50,364 +26,212 @@ export const navLinks = [
   },
 ];
 
-
 const achievements = [
   {
-    title: ["FreeCodeCamp"],
-    company_name: "freeCodeCamp",
-    icon: fcc,
-    iconBg: "#383E56",
-    date: "May 2024",
-    points: ["Responsive Web Design", "JavaScript"],
-    credential: [
-      "https://freecodecamp.org/certification/Jayant-1/responsive-web-design",
-      "https://freecodecamp.org/certification/Jayant-1/responsive-web-design",
-    ],
-  },
-  {
-    title: ["HackerRank"],
-    company_name: "HackerRank",
-    icon: hr,
-    iconBg: "#E6DEDD",
-    date: "Apr 2025",
+    title: ["Web Developer Intern"],
+    company_name: "Jagatmitra Foundation",
+    icon: jagatmitra,
+    iconBg: "#ffffff",
+    date: "Feb 2026 – Jul 2026",
     points: [
-      "Python (Basic) Certificate",
-      "SQL (Basic) Certificate",
-      "CSS (Basic) Certificate",
-      "Go (Basic) Certificate",
+      "Delhi, India (5 Months)",
+      "Contributed to full-stack web applications using React.js, Node.js, Express.js, MongoDB, and Tailwind CSS.",
+      "Developed responsive interfaces and integrated them with backend REST APIs.",
+      "Worked with backend services and databases to implement core application functionality and authentication.",
+      "Contributed to key web projects, including an E-commerce Platform and She-Ride.",
     ],
-    credential: [
-      "https://www.hackerrank.com/certificates/b011ba865ccf",
-      "https://www.hackerrank.com/certificates/633d92ea00fe",
-      "https://www.hackerrank.com/certificates/c9bfa3c0b9e7",
-      "https://www.hackerrank.com/certificates/b5ee5bc85229",
+    certificate: null,
+  },
+  {
+    title: ["Full Stack Developer Certification"],
+    company_name: "VSIT Computer Education",
+    icon: vsit,
+    iconBg: "#ffffff",
+    date: "Aug 2024 – Apr 2025",
+    points: [
+      "Grade: A | ISO 9001:2015 Certified Institute",
+      "Course: Full Stack Dev. (13 August 2024 – 29 April 2025) | Issue Date: 16 July 2025",
+      "Completed Full Stack Development training covering frontend and backend technologies, including React.js, Node.js, Express, MongoDB, MySQL, Postman, Git, and GitHub.",
+      "Technology Areas: HTML, CSS, Bootstrap, JavaScript, React.js, Node.js, Express, MySQL, MongoDB, Postman, Git, GitHub.",
     ],
-  },
-  {
-    title: ["Certiport"],
-    company_name: "Certiport",
-    icon: cp,
-    iconBg: "#383E56",
-    date: "Apr 2025",
-    points: ["IT Specialist - HTML and CSS", "IT Specialist - Databases"],
-    credential: [
-      "https://www.credly.com/badges/c59ff7d1-7af2-4dcb-8c57-d2bd6a6d1f44/linked_in_profile",
-      "https://www.credly.com/badges/61128af2-38bc-4299-b862-157ba2ca2edb/linked_in_profile",
-    ],
-  },
-  {
-    title: ["Coursera"],
-    company_name: "Coursera",
-    icon: coursera,
-    iconBg: "#0056d2",
-    date: "Jul 2025",
-    points: ["IBM Full Stack Software Developer"],
-    credential: ["https://coursera.org/verify/professional-cert/8R7RY7URFI6O"],
-  },
-];
-
-const testimonials = [
-  {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Jayant proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Jayant does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "Jayant boosted our website traffic by 50% through his smart optimization. We are Truly grateful!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    certificate: "/assets/vsit-certificate.jpg",
   },
 ];
 
 const projects = [
   {
-    name: "NeuralNet",
+    name: "LifeCare Polyclinic",
     description:
-      "NeuralNet is a full-stack visual deep learning studio where you design neural networks with drag-and-drop nodes, compile to Keras, train with real TensorFlow metrics, and deploy secure prediction APIs.",
+      "A full-stack website built for LifeCare Polyclinic, focused on presenting the clinic's services and information through a clean and responsive web experience.",
     tags: [
       {
-        name: "react",
+        name: "React.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Node.js",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Express.js",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "MongoDB",
+        color: "violet-text-gradient",
+      },
+      {
+        name: "TailwindCSS",
         color: "ruby-text-gradient",
       },
-      {
-        name: "Zustand",
-        color: "green-text-gradient",
-      },
-      {
-        name: "XYFlow",
-        color: "violet-text-gradient",
-      },
-      {
-        name: "TensorFlow",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "Turso libsql",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "Recharts",
-        color: "orange-text-gradient",
-      },
     ],
-    image: neuralnet,
-    images: [neuralnet, neuralnet1, neuralnet2, neuralnet3, neuralnet4], // Multiple screenshot support
-    source_code_link: "https://github.com/Jayant-1/NeuralNet",
-    live_demo_link: "https://neuralnet.jayantpotdar.in/",
-    metrics: {
-      stars: 152,
-      forks: 42,
-      views: "2.3K",
-    },
+    image: lifecare,
+    images: [lifecare],
+    source_code_link: null,
+    live_demo_link: "https://lifecarepolyclinic.com",
     features: [
-      "Drag-and-drop layer nodes and connect them to design a model visually.",
-      "Converts the visual graph into executable TensorFlow/Keras model code.",
-      "Supports built-in datasets like MNIST, Fashion-MNIST, CIFAR-10, and CIFAR-100, plus custom dataset uploads.",
-      "Lets users configure training and view metrics such as loss and accuracy over epochs.",
-      "Trained models can be deployed as API endpoints with generated API keys.",
-      "Provides a UI to test deployed models by sending inference requests and viewing predictions.",
+      "Developed and deployed a responsive healthcare website for LifeCare Polyclinic using the MERN stack.",
+      "Built a clean, user-friendly interface presenting clinic services, doctor profiles, facilities, and healthcare information.",
+      "Developed backend APIs using Node.js and Express.js for managing clinic services and integrating frontend functionality.",
+      "Integrated MongoDB for structured data storage, persistent doctor profiles, and service directories.",
+      "Engineered appointment inquiry workflows with server-side validation for reliable patient booking.",
     ],
   },
   {
-    name: "Krypton",
+    name: "Vyomme Divine Essentials",
     description:
-      "Krypton is an AI-powered research assistant that searches arXiv and OpenAlex, ranks papers by relevance, recency, and citations, and helps users understand literature faster with Gemini-generated summaries, structured insights, research-gap analysis, and personalized topic recommendations in a FastAPI + React app.",
+      "A full-stack e-commerce web platform developed for puja essentials, featuring dynamic product catalogs, persistent cart workflows, role-based authentication, and structured REST APIs for order and inventory management.",
     tags: [
       {
-        name: "react",
+        name: "React.js",
         color: "blue-text-gradient",
       },
       {
-        name: "arxiv",
+        name: "Node.js",
         color: "green-text-gradient",
       },
       {
-        name: "fastapi",
+        name: "Express.js",
         color: "pink-text-gradient",
       },
       {
-        name: "openalex",
+        name: "MongoDB",
         color: "violet-text-gradient",
       },
       {
-        name: "jwt-authentication",
+        name: "REST APIs",
         color: "orange-text-gradient",
       },
+      {
+        name: "TailwindCSS",
+        color: "ruby-text-gradient",
+      },
     ],
-    image: krypton,
-    images: [
-      krypton,
-      krypton1,
-      krypton2,
-      krypton3,
-      krypton4,
-      krypton5,
-      krypton6,
-    ], // Multiple screenshot support
-    source_code_link: "https://github.com/Jayant-1/Krypton",
-    live_demo_link: "https://krypton.jayantpotdar.in/",
-    metrics: {
-      stars: 152,
-      forks: 42,
-      views: "2.3K",
-    },
+    image: vyomme,
+    images: [vyomme],
+    source_code_link: null,
+    live_demo_link: "http://chairmallaretreat.com/",
     features: [
-      "Multi-source paper search across arXiv and OpenAlex in one query flow.",
-      "Intelligent ranking using relevance (TF-IDF), recency, and citation-based scoring.",
-      "AI-generated paper understanding with plain-English summaries and key contributions.",
-      "Structured insight extraction for each paper: problem, method, result, and limitation.",
-      "Research gap analysis that finds open questions and thematic opportunity clusters.",
-      "Personalized research experience with user profiles, topic recommendations, and goal-aware suggestions.",
+      "Engineered a full-stack e-commerce platform with dynamic product catalog, category filters, and price search.",
+      "Implemented secure user authentication and role-based access control separating customer and administrative operations.",
+      "Built core e-commerce workflows including persistent shopping cart, checkout, and order status handling.",
+      "Designed and integrated RESTful APIs using Express.js with MongoDB and Mongoose for efficient data management.",
+      "Created an administrative dashboard for real-time inventory and catalog tracking.",
     ],
   },
   {
-    name: "AstroPixel",
+    name: "StockLock API",
+    isFeatured: true,
+    category: "Core Backend Project",
     description:
-      "AstroPixel is a FastAPI + React platform for exploring NASA gigapixel imagery with buttery-smooth deep zoom, annotations, and secure user/admin workflows. It ingests GeoTIFF/PSB files, generates tile pyramids with GDAL, and serves them through an optimized viewer.",
+      "A backend-focused REST API built with TypeScript, Express.js, and PostgreSQL, designed with secure authentication, structured error handling, validation, and a maintainable backend architecture.",
     tags: [
       {
-        name: "FastAPI",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "GDAL",
-        color: "green-text-gradient",
-      },
-      {
-        name: "OpenSeadragon",
+        name: "TypeScript",
         color: "pink-text-gradient",
       },
       {
-        name: "Cloudflare R2",
-        color: "violet-text-gradient",
+        name: "Node.js",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Express.js",
+        color: "blue-text-gradient",
       },
       {
         name: "PostgreSQL",
+        color: "violet-text-gradient",
+      },
+      {
+        name: "REST API",
         color: "orange-text-gradient",
       },
+      {
+        name: "JWT",
+        color: "ruby-text-gradient",
+      },
+      {
+        name: "Zod",
+        color: "gold-text-gradient",
+      },
+      {
+        name: "Pino",
+        color: "green-text-gradient",
+      },
     ],
-    image: astroPixel,
-    images: [astroPixel, astroPixel1, astroPixel2, astroPixel3], // Multiple screenshot support
-    source_code_link: "https://github.com/Jayant-1/AstroPixel",
-    live_demo_link: "https://astropixel.jayantpotdar.in/",
-    metrics: {
-      stars: 152,
-      forks: 42,
-      views: "2.3K",
-    },
+    image: stocklock,
+    images: [stocklock],
+    source_code_link: "https://github.com/jvkedev/stocklock",
+    live_demo_link: "https://stocklock-olive.vercel.app/",
     features: [
-      "Deep zoom functionality for gigapixel imagery",
-      "Secure user authentication and admin workflows",
-      "Annotation system for collaborative marking",
-      "GeoTIFF and PSB file ingestion",
-      "Cloudflare R2 integration for scalable storage",
-      "PostgreSQL database for persistent data",
+      "Engineered atomic inventory deduction with PostgreSQL row-level locks to eliminate race conditions during concurrent checkouts.",
+      "Hardened authentication pipeline featuring Argon2 password hashing and JWT access/refresh token rotation stored in secure HTTP-only cookies.",
+      "Enforced Role-Based Access Control (RBAC) across protected API endpoints with custom authentication and authorization middleware.",
+      "Implemented runtime request schema validation across incoming API payloads utilizing Zod.",
+      "Structured high-performance JSON logging with Pino, request correlation IDs, and centralized error handling middleware.",
+      "Architected clean separation of concerns using controllers, services, repositories, and raw SQL queries for optimal database performance.",
     ],
   },
   {
-    name: "Malaria Detection System",
+    name: "3D Portfolio",
     description:
-      "AI-powered malaria detection system for hospitals with patient management, PDF report generation, and real-time analytics. Built with React, Supabase & FastAPI.",
+      "An interactive 3D developer portfolio designed to showcase my projects, skills, and development journey through an immersive web experience.",
     tags: [
       {
         name: "React",
         color: "blue-text-gradient",
       },
       {
-        name: "Supabase",
-        color: "green-text-gradient",
-      },
-      {
-        name: "FastAPI",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "Keras",
-        color: "violet-text-gradient",
-      },
-    ],
-    image: malariadetectionsystem,
-    images: [
-      malariadetectionsystem,
-      malariadetectionsystem1,
-      malariadetectionsystem2,
-    ], // Multiple screenshot support
-    source_code_link: "https://github.com/Jayant-1/MalariaDetectionSystem",
-    live_demo_link: "https://malariadetectionsystem.jayantpotdar.in/",
-    metrics: {
-      stars: 89,
-      forks: 28,
-      views: "1.8K",
-    },
-    features: [
-      "AI-powered malaria cell detection using Keras",
-      "Patient management system",
-      "Automated PDF report generation",
-      "Real-time analytics dashboard",
-      "Hospital workflow integration",
-      "Secure data storage with Supabase",
-    ],
-  },
-  {
-    name: "3D Portfolio",
-    description:
-      "A dynamic React JS portfolio with immersive 3D graphics and smooth animations for an engaging user experience. Includes interactive sections like About, Education, Projects, Connect, and Contact. 🎨💻",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "green-text-gradient",
-      },
-      {
-        name: "framer-motion",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "three.js",
+        name: "Three.js",
         color: "orange-text-gradient",
       },
       {
-        name: "spline",
-        color: "violet-text-gradient",
-      },
-    ],
-    image: portfolio,
-    images: [portfolio, about, skills, contact], // Multiple screenshot support
-    source_code_link: "https://github.com/Jayant-1/3D-Portfolio",
-    live_demo_link: "https://www.jayantpotdar.in/",
-    metrics: {
-      stars: 234,
-      forks: 67,
-      views: "5.2K",
-    },
-    features: [
-      "Immersive 3D graphics with Three.js",
-      "Smooth scroll animations with Framer Motion",
-      "Interactive 3D models and environments",
-      "Responsive design across all devices",
-      "Easter eggs and interactive elements",
-      "Custom elastic cursor with physics",
-    ],
-  },
-  {
-    name: "Nova-Learn",
-    description:
-      "NovaLearn is an AI-powered platform that creates personalized learning paths with interactive content and quizzes. Designed with a futuristic 3D UI, it makes learning immersive, efficient, and goal-driven. 🚀",
-    tags: [
-      {
-        name: "node",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "spline",
-        color: "green-text-gradient",
-      },
-      {
-        name: "JavaScript",
+        name: "React Three Fiber",
         color: "pink-text-gradient",
       },
       {
-        name: "Flask",
+        name: "Spline",
         color: "violet-text-gradient",
       },
       {
-        name: "sqlite3",
-        color: "orange-text-gradient",
+        name: "TailwindCSS",
+        color: "ruby-text-gradient",
+      },
+      {
+        name: "Framer Motion",
+        color: "green-text-gradient",
       },
     ],
-    image: novalearn,
-    images: [novalearn, novalearn1, novalearn2], // Multiple screenshot support
-    source_code_link: "https://github.com/Jayant-1/Nova-Learn",
-    live_demo_link: "https://nova-learn-jayant.vercel.app/",
-    metrics: {
-      stars: 127,
-      forks: 35,
-      views: "3.1K",
-    },
+    image: portfolio3d,
+    images: [portfolio3d],
+    source_code_link: null,
+    live_demo_link: "https://www.jvke.in/",
     features: [
-      "Personalized learning path generation",
-      "Interactive 3D user interface",
-      "Dynamic quiz generation",
-      "Progress tracking and analytics",
-      "Futuristic design system",
-      "Mobile-responsive learning experience",
+      "Interactive 3D workspace model rendered with Three.js and React Three Fiber with custom lighting and orbit controls.",
+      "Embedded interactive 3D mechanical keyboard scene created with Spline runtime and responsive canvas scaling.",
+      "Physics-based elastic cursor and smooth spring-based scroll entrance animations using Framer Motion.",
+      "Modular project showcase architecture with deep-dive modal views and keyboard navigation shortcuts.",
+      "Fully responsive layout designed for desktop, tablet, and mobile with tailored typography and modern dark aesthetic.",
     ],
   },
 ];
@@ -435,4 +259,4 @@ const words = [
   { text: "Code", imgPath: code, font: "'Source Code Pro', monospace" },
 ];
 
-export { achievements, projects, testimonials, words };
+export { achievements, projects, words };

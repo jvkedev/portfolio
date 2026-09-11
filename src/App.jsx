@@ -4,7 +4,6 @@ import {
   About,
   Achievement,
   Contact,
-  Feedbacks,
   Hero,
   Navbar,
   Preloader,
@@ -38,7 +37,6 @@ const App = () => {
               <Works />
               <Achievement />
               <SkillKeyboard />
-              <Feedbacks />
               <div className="relative z-0">
                 <Contact />
               </div>

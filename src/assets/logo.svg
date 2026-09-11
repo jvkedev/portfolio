@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 346" width="1280" height="346">
+  <defs>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Badge Frame -->
+  <rect x="42" y="38" width="206" height="270" rx="46" ry="46" fill="none" stroke="url(#glow)" stroke-width="14" stroke-linecap="round" />
+  
+  <!-- Stylized Monogram S -->
+  <path d="M 180 115 C 170 98, 148 94, 130 94 C 102 94, 88 112, 88 134 C 88 184, 202 166, 202 220 C 202 248, 178 266, 142 266 C 118 266, 96 256, 86 238" 
+        fill="none" 
+        stroke="url(#glow)" 
+        stroke-width="18" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+        
+  <!-- Main Name: SHUBHAM -->
+  <text x="290" y="190" 
+        fill="#ffffff" 
+        font-family="'Poppins', 'Montserrat', 'Inter', 'Segoe UI', system-ui, sans-serif" 
+        font-size="134" 
+        font-weight="800" 
+        letter-spacing="5">SHUBHAM</text>
+        
+  <!-- Subtitle: FULL-STACK WEB DEVELOPER -->
+  <text x="295" y="260" 
+        fill="#ffffff" 
+        font-family="'Poppins', 'Montserrat', 'Inter', 'Segoe UI', system-ui, sans-serif" 
+        font-size="34" 
+        font-weight="600" 
+        letter-spacing="9" 
+        opacity="0.92">FULL-STACK WEB DEVELOPER</text>
+</svg>

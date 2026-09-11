@@ -6,13 +6,92 @@ import { styles } from "../styles";
 import useMediaQuery from "../utils/useMediaQuery";
 import { ComputersCanvas } from "./canvas";
 
-const Hero = () => {
-  const [typedText, setTypedText] = useState("");
-  const typedItems = ["Developer", "Freelancer", "Designer", "Learner"];
-  const [itemIndex, setItemIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
+const TYPED_ITEMS = [
+  "Backend Developer",
+  "Full Stack Builder",
+  "Software Engineer",
+  "Always Learning",
+];
 
+const TypewriterText = ({
+  words = TYPED_ITEMS,
+  typeSpeed = 80,
+  deleteSpeed = 40,
+  pauseEnd = 1600,
+  pauseStart = 400,
+}) => {
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    if (!words.length) return;
+
+    const currentWord = words[wordIndex % words.length];
+
+    let timer;
+
+    if (!isDeleting) {
+      if (text.length < currentWord.length) {
+        timer = setTimeout(() => {
+          setText(currentWord.slice(0, text.length + 1));
+        }, typeSpeed);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseEnd);
+      }
+    } else {
+      if (text.length > 0) {
+        timer = setTimeout(() => {
+          setText(currentWord.slice(0, text.length - 1));
+        }, deleteSpeed);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }, pauseStart);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, wordIndex, words, typeSpeed, deleteSpeed, pauseEnd, pauseStart]);
+
+  return (
+    <>
+      <span
+        className="typed"
+        style={{
+          backgroundImage:
+            "linear-gradient(to bottom, rgba(245, 202, 153, 0.5), rgba(245, 202, 153, 0.5))",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 8px",
+          backgroundPosition: "0 100%",
+          color: "#915EFF",
+          display: "inline-block",
+          fontWeight: "bold",
+          minHeight: "1.2em",
+        }}
+      >
+        {text || "\u200B"}
+      </span>
+      <motion.span
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="typed-cursor inline-block ml-0.5 text-[#915EFF] font-bold select-none"
+        aria-hidden="true"
+      >
+        |
+      </motion.span>
+    </>
+  );
+};
+
+const Hero = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { style: parallaxStyle } = useParallax({
     strength: 0.03,
@@ -20,26 +99,6 @@ const Hero = () => {
     enabled: !isMobile,
   });
 
-  useEffect(() => {
-    const typeItem = () => {
-      if (charIndex < typedItems[itemIndex].length) {
-        setTypedText((prevText) => prevText + typedItems[itemIndex][charIndex]);
-        setCharIndex(charIndex + 1);
-      } else {
-        setIsTyping(false);
-        setTimeout(() => {
-          setIsTyping(true);
-          setItemIndex((itemIndex + 1) % typedItems.length);
-          setCharIndex(0);
-          setTypedText("");
-        }, 1000); // Delay before typing the next item
-      }
-    };
-
-    const typingInterval = setInterval(typeItem, 100); // Typing speed
-
-    return () => clearInterval(typingInterval);
-  }, [charIndex, itemIndex]);
   return (
     <section className={`relative w-full h-screen mx-auto`} id="hero">
       <div
@@ -52,31 +111,14 @@ const Hero = () => {
 
         <div style={parallaxStyle}>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915EFF]">Jayant Potdar</span>
+            Hi, I'm <span className="text-[#915EFF]">Shubham</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             I'm{" "}
-            <span
-              className="typed"
-              aria-hidden="true"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to bottom, rgba(245, 202, 153, 0.5), rgba(245, 202, 153, 0.5))",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "100% 8px",
-                backgroundPosition: "0 100%",
-                color: "#915EFF",
-                display: "inline-block",
-                fontWeight: "bold",
-              }}
-            >
-              {typedText}
-            </span>
-            <span className="typed-cursor" aria-hidden="true">
-              |
-            </span>
+            <TypewriterText />
             <br />
-            <b>Bring on the challenges, I'm ready to soak up knowledge!</b>
+            <b>Bring on the challenges. I’m here to learn, build, and keep growing.</b>
+
           </p>
         </div>
       </div>
